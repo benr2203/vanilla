@@ -218,7 +218,7 @@ class BBCode extends Gdn_Pluggable {
             }
 
             $encodedUrl = htmlspecialchars($url);
-            return "<a href=\"{$encodedUrl}\" rel=\"nofollow\" class=\"bbcode_url\"{$target}\">{$content}</a>";
+            return "<a href=\"{$encodedUrl}\" rel=\"nofollow noopener\" class=\"bbcode_url\"{$target}\">{$content}</a>";
         } else {
             return htmlspecialchars($params['_tag']).$content.htmlspecialchars($params['_endtag']);
         }
@@ -468,7 +468,7 @@ class BBCode extends Gdn_Pluggable {
                 'plain_content' => ['_content', '_default'],
                 'plain_end' => "</a>",
                 'plain_link' => ['_default', '_content'],
-                'plain_start' => "<a rel=\"nofollow\" href=\"{\$link}\">"
+                'plain_start' => "<a rel=\"nofollow noopener\" href=\"{\$link}\">"
             ]);
 
             $nbbc->addRule('video', [

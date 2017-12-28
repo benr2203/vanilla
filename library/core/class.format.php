@@ -21,11 +21,11 @@ use Garden\EventManager;
 class Gdn_Format {
 
     /**
-     * @var bool Flag which allows plugins to decide if the output should include rel="nofollow" on any <a> links.
+     * @var bool Flag which allows plugins to decide if the output should include rel="nofollow noopener" on any <a> links.
      *
      * @example a plugin can run on "BeforeCommentBody" to check the current users role and decide if his/her post
-     * should contain rel="nofollow" links. The default setting is true, meaning all links will contain
-     * the rel="nofollow" attribute.
+     * should contain rel="nofollow noopener" links. The default setting is true, meaning all links will contain
+     * the rel="nofollow noopener" attribute.
      */
     public static $DisplayNoFollow = true;
 
@@ -330,9 +330,9 @@ class Gdn_Format {
                 $mixed2 = preg_replace("#\[quote\](.*?)\[/quote\]#si", '<blockquote class="Quote"><div class="QuoteText">\\1</div></blockquote>', $mixed2);
                 $mixed2 = preg_replace("#\[cite\](.*?)\[/cite\]#si", '<blockquote class="Quote">\\1</blockquote>', $mixed2);
                 $mixed2 = preg_replace("#\[hide\](.*?)\[/hide\]#si", '\\1', $mixed2);
-                $mixed2 = preg_replace("#\[url\]((https?|ftp):\/\/.*?)\[/url\]#si", '<a rel="nofollow" href="\\1">\\1</a>', $mixed2);
+                $mixed2 = preg_replace("#\[url\]((https?|ftp):\/\/.*?)\[/url\]#si", '<a rel="nofollow noopener" href="\\1">\\1</a>', $mixed2);
                 $mixed2 = preg_replace("#\[url\](.*?)\[/url\]#si", '\\1', $mixed2);
-                $mixed2 = preg_replace("#\[url=[\"']?((https?|ftp):\/\/.*?)[\"']?\](.*?)\[/url\]#si", '<a rel="nofollow" href="\\1">\\3</a>', $mixed2);
+                $mixed2 = preg_replace("#\[url=[\"']?((https?|ftp):\/\/.*?)[\"']?\](.*?)\[/url\]#si", '<a rel="nofollow noopener" href="\\1">\\3</a>', $mixed2);
                 $mixed2 = preg_replace("#\[url=[\"']?(.*?)[\"']?\](.*?)\[/url\]#si", '\\2', $mixed2);
                 $mixed2 = preg_replace("#\[img\]((https?|ftp):\/\/.*?)\[/img\]#si", '<img src="\\1" border="0" />', $mixed2);
                 $mixed2 = preg_replace("#\[img\](.*?)\[/img\]#si", '\\1', $mixed2);
@@ -1313,7 +1313,7 @@ class Gdn_Format {
                 $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
             }
 
-            $nofollow = (self::$DisplayNoFollow) ? ' rel="nofollow"' : '';
+            $nofollow = (self::$DisplayNoFollow) ? ' rel="nofollow noopener"' : '';
 
             if (c('Garden.Format.WarnLeaving', false)) {
                 // This is a plaintext url we're converting into an anchor.
@@ -1543,7 +1543,7 @@ EOT;
 
             case 'Twitter':
                 return <<<EOT
-<div class="twitter-card" data-tweeturl="{$matches[0]}" data-tweetid="{$matches[1]}"><a href="{$matches[0]}" class="tweet-url" rel="nofollow">{$matches[0]}</a></div>
+<div class="twitter-card" data-tweeturl="{$matches[0]}" data-tweetid="{$matches[1]}"><a href="{$matches[0]}" class="tweet-url" rel="nofollow noopener">{$matches[0]}</a></div>
 EOT;
                 break;
 
@@ -1565,7 +1565,7 @@ EOT;
 
             case 'Pinterest':
                 return <<<EOT
-<a data-pin-do="embedPin" href="https://pinterest.com/pin/{$matches[1]}/" class="pintrest-pin" rel="nofollow"></a>
+<a data-pin-do="embedPin" href="https://pinterest.com/pin/{$matches[1]}/" class="pintrest-pin" rel="nofollow noopener"></a>
 EOT;
                 break;
 
@@ -1687,7 +1687,7 @@ EOT;
             $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
         }
 
-        $nofollow = (self::$DisplayNoFollow) ? ' rel="nofollow"' : '';
+        $nofollow = (self::$DisplayNoFollow) ? ' rel="nofollow noopener"' : '';
 
         if (c('Garden.Format.WarnLeaving', false)) {
             // This is a plaintext url we're converting into an anchor.
