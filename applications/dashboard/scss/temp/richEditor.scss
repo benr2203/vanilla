@@ -1,6 +1,11 @@
+$richEditor-icon_size: 24px !default;
+$richEditor-button_size: 42px !default;
+$richEditor_leftPadding: 36px;
+
 .richEditor {
-  padding-left: 36px;
+  padding-left: $richEditor_leftPadding;
 }
+
 
 .richEditor-menuItems {
   position: relative;
@@ -26,18 +31,16 @@
   appearance: none;
   border: 0;
   padding: 0;
-  width: 42px;
-  height: 42px;
+  width: $richEditor-button_size;
+  height: $richEditor-button_size;
 }
 
 .richEditor-embedButton {
-  height: 24px;
-  width: 24px;
+  height: $richEditor-icon_size;
+  width: $richEditor-icon_size;
 }
 
 .richEditorInline-icon {
-  width: 24px;
-  height: 24px;
+  width: $richEditor-icon_size;
+  height: $richEditor-icon_size;
 }
-
-/*# sourceMappingURL=style-compat.css.map */
