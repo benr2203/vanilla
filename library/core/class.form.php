@@ -281,7 +281,63 @@ class Gdn_Form extends Gdn_Pluggable {
         $this->EventArguments['Attributes'] = $attributes;
         $this->EventArguments['BodyBox'] =& $result;
         $this->fireEvent('BeforeBodyBox');
+        ?>
 
+        <div class="richEditor" aria-label="<?php echo t('Type your message');?>" aria-describedby="richEditor-description" role="textbox" aria-multiline="true">
+            <p id="richEditor-description" class="sr-only">
+                <?php echo t('Insert instructions for editor here'); ?>
+            </p>
+
+            <div class="richParagraph">
+                <svg class="richParagraph-icon" viewBox="0 0 24 24">
+                    <title>¶</title>
+                    <path fill="currentColor" fill-rule="evenodd" d="M15,6 L17,6 L17,18 L15,18 L15,6 Z M11,6 L13.0338983,6 L13.0338983,18 L11,18 L11,6 Z M11,13.8666667 C8.790861,13.8666667 7,12.1056533 7,9.93333333 C7,7.76101332 8.790861,6 11,6 C11,7.68571429 11,11.6190476 11,13.8666667 Z"/>
+                </svg>
+                <div class="richParagraph-menu js-richEditor-paragraphMenu">
+                    <button class="richEditor-menuItem">
+                        <svg class="richParagraph-icon" viewBox="0 0 24 24">
+                            <title>¶</title>
+                            <path fill="currentColor" fill-rule="evenodd" d="M15,6 L17,6 L17,18 L15,18 L15,6 Z M11,6 L13.0338983,6 L13.0338983,18 L11,18 L11,6 Z M11,13.8666667 C8.790861,13.8666667 7,12.1056533 7,9.93333333 C7,7.76101332 8.790861,6 11,6 C11,7.68571429 11,11.6190476 11,13.8666667 Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="richEditor-frame">
+                <div class="richEditor-text">
+
+                </div>
+                <div class="richEditor-insertMenu">
+                    <button class="richEditor-menuItem">
+                        <svg class="richParagraph-icon" viewBox="0 0 24 24">
+                            <title>¶</title>
+                            <path fill="currentColor" fill-rule="evenodd" d="M15,6 L17,6 L17,18 L15,18 L15,6 Z M11,6 L13.0338983,6 L13.0338983,18 L11,18 L11,6 Z M11,13.8666667 C8.790861,13.8666667 7,12.1056533 7,9.93333333 C7,7.76101332 8.790861,6 11,6 C11,7.68571429 11,11.6190476 11,13.8666667 Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+
+            <hr/>
+
+            <h2> Inline Menu </h2>
+
+            <div class="richInline-menu js-richEditor-paragraphMenu">
+                <button class="richEditor-menuItem">
+                    <svg class="richInline-icon" viewBox="0 0 24 24">
+                        <title>¶</title>
+                        <path fill="currentColor" fill-rule="evenodd" d="M15,6 L17,6 L17,18 L15,18 L15,6 Z M11,6 L13.0338983,6 L13.0338983,18 L11,18 L11,6 Z M11,13.8666667 C8.790861,13.8666667 7,12.1056533 7,9.93333333 C7,7.76101332 8.790861,6 11,6 C11,7.68571429 11,11.6190476 11,13.8666667 Z"/>
+                    </svg>
+                </button>
+            </div>
+
+
+
+
+
+        </div>
+
+        <?php
         // Only add the format if it was set on the form. This allows plugins to remove the format.
         if ($format = $this->getValue('Format')) {
             $attributes['format'] = htmlspecialchars($format);
